@@ -9,7 +9,7 @@ defineProps({
   },
   size: {
     type: Number,
-    default: 80,
+    default: 50,
   },
 });
 </script>
