@@ -1,0 +1,22 @@
+// | ---------------------------------
+// | Vendor
+// | ---------------------------------
+
+@import "bootstrap/scss/bootstrap-reboot.scss";
+@import "bootstrap/scss/bootstrap-grid.scss";
+
+// | ---------------------------------
+// | Global
+// | ---------------------------------
+
+@import "./reset";
+
+// | ---------------------------------
+// | Utilities
+// | ---------------------------------
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
