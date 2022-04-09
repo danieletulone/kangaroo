@@ -1,19 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { RouteName } from "@/common";
 import authRoutes from "@/router/auth.routes";
+import storeRoutes from "@/router/store.routes";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
+      name: RouteName.HOME,
       component: () => import("@/views/HomeView.vue"),
     },
-    authRoutes,
     {
       path: "/dashboard",
-      name: "dashboard",
+      name: RouteName.DASHBOARD,
       component: () => import("@/views/DashboardView.vue"),
+    },
+    authRoutes,
+    storeRoutes,
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("@/views/NotFoundView.vue"),
     },
   ],
 });

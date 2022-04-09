@@ -1,19 +1,21 @@
+import { RouteName } from "@/common";
 import type { RouteRecordRaw } from "vue-router";
 
 const authRoutes: RouteRecordRaw = {
   path: "/auth",
-  name: "auth",
+  name: RouteName.AUTH,
   component: () => import("@/views/auth/AuthView.vue"),
+  redirect: "/auth/login",
   children: [
     {
-      path: "/register",
-      name: "register",
-      component: () => import("@/views/auth/LoginView.vue"),
+      path: "register",
+      name: RouteName.AUTH_REGISTER,
+      component: () => import("@/views/auth/RegisterView.vue"),
     },
     {
-      path: "/login",
-      name: "login",
-      component: () => import("@/views/auth/RegisterView.vue"),
+      path: "login",
+      name: RouteName.AUTH_LOGIN,
+      component: () => import("@/views/auth/LoginView.vue"),
     },
   ],
 };
