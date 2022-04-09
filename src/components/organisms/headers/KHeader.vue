@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useRoute, RouterLink } from "vue-router";
-import { useAutoHide } from "@/composables/style/autohide.composable";
-import { useRootLink } from "@/composables/router/root-link.composable";
+import { useAutoHide, useRootLink } from "@/composables";
+import { RouteName } from "@/common";
 import KButton from "@/components/atoms/KButton.vue";
 
 const route = useRoute();
 
 const shouldHideHeader = computed(() => {
-  return route.name === "dashboard";
+  return route.name === RouteName.DASHBOARD;
 });
 
-const { autoHideStyle } = useAutoHide(shouldHideHeader, 80);
+const { transform, height } = useAutoHide(shouldHideHeader, 80).style;
 
 const titleLink = useRootLink();
 </script>
@@ -19,28 +19,30 @@ const titleLink = useRootLink();
 <template>
   <header class="k-header-fluid container-fluid">
     <div class="k-header container">
-      <div class="k-header-segment w-25">
+      <div class="k-header-segment d-flex justify-content-start">
         <k-button>
           <router-link to="login">Login</router-link>
         </k-button>
       </div>
 
-      <div class="k-header-segment w-50">
-        <div class="flex-center" style="flex-direction: column">
-          <RouterLink :to="titleLink.link.value">
-            <h1>Kangaroo</h1>
-          </RouterLink>
-        </div>
+      <div class="k-header-segment flex-center">
+        <RouterLink :to="titleLink.link.value">
+          <h1>Kangaroo</h1>
+        </RouterLink>
       </div>
 
-      <div class="k-header-segment w-25">
-        <div class="k-header-segment-content">
+      <div class="k-header-segment">
+        <div class="k-header-segment-content d-flex justify-content-end">
           <k-button>
-            <router-link to="login">Login</router-link>
+            <router-link :to="{ name: RouteName.AUTH_LOGIN }">
+              Login
+            </router-link>
           </k-button>
 
           <k-button>
-            <router-link to="register">Register</router-link>
+            <router-link :to="{ name: RouteName.AUTH_REGISTER }">
+              Register
+            </router-link>
           </k-button>
         </div>
       </div>
@@ -50,8 +52,8 @@ const titleLink = useRootLink();
 
 <style scoped>
 .k-header-fluid {
-  transform: v-bind(autoHideStyle.transform);
-  height: v-bind(autoHideStyle.height);
+  transform: v-bind(transform);
+  height: v-bind(height);
   transition: 0.5s;
   border-bottom: 1px solid #e0e0e0;
 }
@@ -60,7 +62,11 @@ const titleLink = useRootLink();
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: v-bind(autoHideStyle.height);
+  height: v-bind(height);
+}
+
+.k-header-segment {
+  width: 33%;
 }
 
 h1 {
