@@ -7,22 +7,22 @@ export const useAutoHide = function (
 ) {
   const route = useRoute();
 
-  const autoHideStyle = reactive({
+  const style = reactive({
     transform: "translateY(0px)",
     height: `${height}px`,
   });
 
   watch(route, () => {
     if (shouldHide.value) {
-      autoHideStyle.transform = "translateY(-80px)";
-      autoHideStyle.height = "0px";
+      style.transform = "translateY(-80px)";
+      style.height = "0px";
     } else {
-      autoHideStyle.transform = "translateY(0px)";
-      autoHideStyle.height = "80px";
+      style.transform = "translateY(0px)";
+      style.height = "80px";
     }
   });
 
   return {
-    autoHideStyle,
+    style,
   };
 };
