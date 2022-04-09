@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import type { User } from "@/common/interfaces/user.interface";
+import type { User } from "@/common";
 
 export const user = reactive<User>({
   id: "",

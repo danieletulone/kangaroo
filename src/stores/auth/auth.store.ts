@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
-import { user } from "@/stores/auth/auth.state";
 import { isAuthenticated } from "@/stores/auth/auth.computed";
 import { login } from "@/stores/auth/auth.actions";
+import { user } from "@/stores/auth/auth.state";
 
 /**
  * Auth store module.
